@@ -27,21 +27,24 @@ export default class PeoplePage extends Component {
     };
   
     render() {
-  
-      if (this.state.hasError) {
-        return <ErrorIndicator />;
+
+        if (this.state.hasError) {
+          return <ErrorIndicator />;
+        }
+    
+        return (
+          <div className="row mb2">
+            <div className="col-md-6">
+              <ItemList
+                onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPeople}
+                
+                 />
+            </div>
+            <div className="col-md-6">
+              <PersonDetails personId={this.state.selectedPerson} />
+            </div>
+          </div>
+        );
       }
-  
-      return (
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}/>
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>
-      );
     }
-  }
